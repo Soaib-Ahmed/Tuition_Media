@@ -3,7 +3,7 @@
 
 # Tuition Ninja - Tuition Management Platform
 
-Live Link: 
+Live Link: https://tuitionninja.onrender.com
 
 #Overview
 Tuition Ninja is an innovative online tuition management platform designed to streamline the process of searching, applying, and managing tuitions. This platform caters to both administrators and users, providing a comprehensive solution to meet the needs of the education community.
