@@ -1,0 +1,306 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<style>
+    /* Fotter css */
+    .site-footer
+{
+  background:linear-gradient(90deg,#ad32a2,#58034a);
+  padding:45px 0 20px;
+  font-size:15px;
+  line-height:24px;
+  color:white
+}
+.site-footer hr
+{
+  border-top-color:#4fd1c5;
+  opacity:0.5
+}
+.site-footer hr.small
+{
+  margin:20px 0
+}
+.site-footer h6
+{
+  color:#fff;
+  font-size:16px;
+  text-transform:uppercase;
+  margin-top:5px;
+  letter-spacing:2px
+}
+.site-footer a
+{
+  color:white;
+}
+.site-footer a:hover
+{
+  color:#3366cc;
+  text-decoration:none;
+}
+.footer-links
+{
+  padding-left:0;
+  list-style:none
+}
+.footer-links li
+{
+  display:block
+}
+.footer-links a
+{
+  color:white
+}
+.footer-links a:active,.footer-links a:focus,.footer-links a:hover
+{
+  color:#3366cc;
+  text-decoration:none;
+}
+.footer-links.inline li
+{
+  display:inline-block
+}
+.site-footer .social-icons
+{
+  text-align:right
+}
+.site-footer .social-icons a
+{
+  width:40px;
+  height:40px;
+  line-height:40px;
+  margin-left:6px;
+  margin-right:0;
+  border-radius:100%;
+  background-color:#33353d
+}
+.copyright-text
+{
+  margin:0
+}
+@media (max-width:991px)
+{
+  .site-footer [class^=col-]
+  {
+    margin-bottom:30px
+  }
+}
+@media (max-width:767px)
+{
+  .site-footer
+  {
+    padding-bottom:0
+  }
+  .site-footer .copyright-text,.site-footer .social-icons
+  {
+    text-align:center
+  }
+}
+.social-icons
+{
+  padding-left:0;
+  margin-bottom:0;
+  list-style:none
+}
+.social-icons li
+{
+  display:inline-block;
+  margin-bottom:4px
+}
+.social-icons li.title
+{
+  margin-right:15px;
+  text-transform:uppercase;
+  color:#96a2b2;
+  font-weight:700;
+  font-size:13px
+}
+.social-icons a{
+  background-color:#eceeef;
+  color:#818a91;
+  font-size:16px;
+  display:inline-block;
+  line-height:44px;
+  width:44px;
+  height:44px;
+  text-align:center;
+  margin-right:8px;
+  border-radius:100%;
+  -webkit-transition:all .2s linear;
+  -o-transition:all .2s linear;
+  transition:all .2s linear
+}
+.social-icons a:active,.social-icons a:focus,.social-icons a:hover
+{
+  color:#fff;
+  background-color:#29aafe
+}
+.social-icons.size-sm a
+{
+  line-height:34px;
+  height:34px;
+  width:34px;
+  font-size:14px
+}
+.social-icons a.facebook:hover
+{
+  background-color:#3b5998
+}
+.social-icons a.twitter:hover
+{
+  background-color:#00aced
+}
+.social-icons a.linkedin:hover
+{
+  background-color:#007bb6
+}
+.social-icons a.dribbble:hover
+{
+  background-color:#ea4c89
+}
+@media (max-width:767px)
+{
+  .social-icons li.title
+  {
+    display:block;
+    margin-right:0;
+    font-weight:600
+  }
+}
+</style>
+
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-8">
+      <h2 style="text-align: center; padding: 10px; color: #ad32a2;font-weight: 700;" >{{ tuition.title }}</h2>
+      <p>{{ tuition.description }}</p>
+
+      <h3 style="text-align: center; padding: 10px; color: #4fd1c5;font-weight: 800;" class="mt-4">Tuition Details</h3>
+      <div style="display: flex; justify-content: space-between;align-items: start;gap: 5px;">
+        <div>
+          <ul style="list-style: none; ">
+            <li><strong >Subjects:</strong> {{ tuition.subjects }}</li>
+          <li><strong>Type:</strong> {{ tuition.type }}</li>
+          <li><strong>Class:</strong> {{ tuition.grade }}</li>
+          <li><strong>Student Count:</strong> {{ tuition.student_count }}</li>
+          
+          </ul>
+        </div>
+        <div>
+          <ul style="list-style: none;">
+            <li><strong>Gender:</strong> {{ tuition.get_gender_display }}</li>
+            <li><strong>Preferred Gender:</strong> {{ tuition.get_pref_gender_display }}</li>
+          <li><strong>Teaching Time:</strong> {{ tuition.teaching_time }}</li>
+          <li><strong>Days per Week:</strong> {{ tuition.days_per_week }}</li>
+          
+          </ul>
+        </div>
+        <div>
+          <ul style="list-style: none;">
+            <li><strong>Location:</strong> {{ tuition.location }}</li>
+            <li><strong>Monthly Salary:</strong> {{ tuition.monthly_salary }}</li>
+          <li><strong>Availability:</strong> {% if tuition.availability %}Available{% else %}Not Available{% endif %}</li>
+          </ul>
+        </div>
+      </div>
+
+      {% if user.is_authenticated and not user_has_applied %}
+      <!-- Apply for Tuition Form -->
+      <h4 class="mt-4">Apply for This Tuition</h4>
+      <form method="post" action="{% url 'tuitions:tuition-detail' pk=tuition.id %}">
+        {% csrf_token %}
+        {{ application_form.as_p }}
+        <button type="submit" class="btn" style="background-color: #4fd1c5;">Apply Now</button>
+      </form>
+      {% endif %}
+
+      <!-- Display Reviews -->
+      <div class="card m-2">
+        <h5 class="p-3">Reviews</h5>
+        {% for review in reviews %}
+        <div class="card-body border m-2">
+          <p><b>{{ review.user.username }}</b> {{ review.created_on }}</p>
+          <p>{{ review.review_text }}</p>
+        </div>
+        {% endfor %}
+      </div>
+
+      <!-- Leave Review Form -->
+      {% if user.is_authenticated and user_has_accepted_tuition %}
+      <h3 class="mt-4">Leave a Review</h3>
+      <form method="post" action="{% url 'tuitions:tuition-detail' pk=tuition.id %}">
+        {% csrf_token %}
+        {{ review_form.as_p }}
+        <button type="submit" class="btn btn-primary">Submit Review</button>
+      </form>
+      {% endif %}
+    </div>
+
+    <div class="col-md-4">
+      <img src="{% static 'tu.jpeg' %}" class="img-fluid" alt="Tuition Image">
+
+      {% if user_has_applied %}
+      <p class="mt-4">You have already applied for this tuition.</p>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+
+
+
+<!-- footer start from here -->
+
+  <!-- Site footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12 col-md-6">
+          <h1 style="color: #4fd1c5;">Best Tutoring Platform</h1>
+          <p class="text-justify">Tutoring Platform is a platform where parents, students and tutors can easily connect with each other. We provide qualified Home/Online tutors to help your child with studies and helping them perform better in exams. We are a group of 2,50,000+ Tutors and 30,000+ satisfied parents/students in Dhaka, Chattagram, Rajshahi, Sylhet, Khulna, Barishal, Rangpur, Mymensingh cities for different academic and professional subjects.</p>
+        </div>
+
+        <div class="col-xs-6 col-md-3">
+          <h6 style="color: #4fd1c5;">Categories</h6>
+          <ul class="footer-links">
+            <li><a href="http://scanfcode.com/category/c-language/">C</a></li>
+            <li><a href="http://scanfcode.com/category/front-end-development/">UI Design</a></li>
+            <li><a href="http://scanfcode.com/category/back-end-development/">PHP</a></li>
+            <li><a href="http://scanfcode.com/category/java-programming-language/">Java</a></li>
+            <li><a href="http://scanfcode.com/category/android/">Android</a></li>
+            <li><a href="http://scanfcode.com/category/templates/">Templates</a></li>
+          </ul>
+        </div>
+
+        <div class="col-xs-6 col-md-3">
+          <h6 style="color: #4fd1c5;">Quick Links</h6>
+          <ul class="footer-links">
+            <li><a href="http://scanfcode.com/about/">About Us</a></li>
+            <li><a href="http://scanfcode.com/contact/">Contact Us</a></li>
+            <li><a href="http://scanfcode.com/contribute-at-scanfcode/">Contribute</a></li>
+            <li><a href="http://scanfcode.com/privacy-policy/">Privacy Policy</a></li>
+            <li><a href="http://scanfcode.com/sitemap/">Sitemap</a></li>
+          </ul>
+        </div>
+      </div>
+      <hr>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="">
+          <div style="text-align: center;"> 
+            <p class="copyright-text">Copyright &copy; 2024 All Rights Reserved by 
+            <a href="#">Seaum</a>.
+               </p>
+              </div>
+        </div>
+
+        <div class="col-md-4 col-sm-6 col-xs-12">
+          
+        </div>
+      </div>
+    </div>
+</footer>
+
+{% endblock %}

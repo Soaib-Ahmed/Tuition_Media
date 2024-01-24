@@ -1,0 +1,582 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<style>
+  .header {
+  background-image: url(https://tutorsheba.com/_next/static/media/banner-bg.59ddabf7.svg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: bottom;
+  height: 590px;
+
+  .tuition-filter-form label {
+    font-size: 16px; /* Adjust the font size as needed */
+    padding-right: 10px; /* Add padding to the right of the label */
+  }
+
+  .tuition-filter-form select {
+    font-size: 16px; /* Adjust the font size as needed */
+    padding: 8px; /* Add padding to all sides of the select input */
+  }
+
+  .best{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  }
+
+  .tuition-filter-form button {
+    font-size: 16px; /* Adjust the font size as needed */
+    padding: 8px 16px; /* Add padding to the button */
+  }
+  /* Fotter css */
+  .site-footer
+{
+  background:linear-gradient(90deg,#ad32a2,#58034a);
+  padding:45px 0 20px;
+  font-size:15px;
+  line-height:24px;
+  color:white
+}
+.site-footer hr
+{
+  border-top-color:#4fd1c5;
+  opacity:0.5
+}
+.site-footer hr.small
+{
+  margin:20px 0
+}
+.site-footer h6
+{
+  color:#fff;
+  font-size:16px;
+  text-transform:uppercase;
+  margin-top:5px;
+  letter-spacing:2px
+}
+.site-footer a
+{
+  color:white;
+}
+.site-footer a:hover
+{
+  color:#3366cc;
+  text-decoration:none;
+}
+.footer-links
+{
+  padding-left:0;
+  list-style:none
+}
+.footer-links li
+{
+  display:block
+}
+.footer-links a
+{
+  color:white
+}
+.footer-links a:active,.footer-links a:focus,.footer-links a:hover
+{
+  color:#3366cc;
+  text-decoration:none;
+}
+.footer-links.inline li
+{
+  display:inline-block
+}
+.site-footer .social-icons
+{
+  text-align:right
+}
+.site-footer .social-icons a
+{
+  width:40px;
+  height:40px;
+  line-height:40px;
+  margin-left:6px;
+  margin-right:0;
+  border-radius:100%;
+  background-color:#33353d
+}
+.copyright-text
+{
+  margin:0
+}
+@media (max-width:991px)
+{
+  .site-footer [class^=col-]
+  {
+    margin-bottom:30px
+  }
+}
+@media (max-width:767px)
+{
+  .site-footer
+  {
+    padding-bottom:0
+  }
+  .site-footer .copyright-text,.site-footer .social-icons
+  {
+    text-align:center
+  }
+}
+.social-icons
+{
+  padding-left:0;
+  margin-bottom:0;
+  list-style:none
+}
+.social-icons li
+{
+  display:inline-block;
+  margin-bottom:4px
+}
+.social-icons li.title
+{
+  margin-right:15px;
+  text-transform:uppercase;
+  color:#96a2b2;
+  font-weight:700;
+  font-size:13px
+}
+.social-icons a{
+  background-color:#eceeef;
+  color:#818a91;
+  font-size:16px;
+  display:inline-block;
+  line-height:44px;
+  width:44px;
+  height:44px;
+  text-align:center;
+  margin-right:8px;
+  border-radius:100%;
+  -webkit-transition:all .2s linear;
+  -o-transition:all .2s linear;
+  transition:all .2s linear
+}
+.social-icons a:active,.social-icons a:focus,.social-icons a:hover
+{
+  color:#fff;
+  background-color:#29aafe
+}
+.social-icons.size-sm a
+{
+  line-height:34px;
+  height:34px;
+  width:34px;
+  font-size:14px
+}
+.social-icons a.facebook:hover
+{
+  background-color:#3b5998
+}
+.social-icons a.twitter:hover
+{
+  background-color:#00aced
+}
+.social-icons a.linkedin:hover
+{
+  background-color:#007bb6
+}
+.social-icons a.dribbble:hover
+{
+  background-color:#ea4c89
+}
+@media (max-width:767px)
+{
+  .social-icons li.title
+  {
+    display:block;
+    margin-right:0;
+    font-weight:600
+  }
+}
+}
+
+</style>
+
+<div class="header">
+
+  <div
+    style="width: 70%; margin: 0 auto; display: flex;justify-content: space-between;align-items: flex-start; padding-top: 40px;">
+    <div style="width: 50%">
+      <h1 style="color: purple; font-weight: bold; font-size: 48px;line-height: 60px;">Best <span
+          style="color: #4fd1c5;">Tutoring Platform</span><br>
+        for Home & Online Tuitions</h1>
+      <div style="display: flex; align-items: center;justify-items: start; gap: 10px;">
+        <img style="width: 30px; height: 30px;" src="static/assets/free-location-icon-2955-thumb.png" alt="">
+        <p style="font-weight: 500px;font-size: 24px;line-height: 26px;color: #6c757d;">Find the Right Tutor in Your
+          Area</p>
+      </div>
+      <a style="text-decoration: none;" href="#find">
+        <button style="margin-top: 10px;
+      min-width: 300px;
+      min-height: 60px;
+      font-size: 18px;
+      text-transform: uppercase;
+      letter-spacing: 1.3px;
+      font-weight: 600;
+      color: #fff;
+      background: #4fd1c5;
+      background: linear-gradient(90deg,#ad32a2,#58034a);
+      border: none;
+      box-shadow: 12px 12px 24px rgba(79,209,197,.64);
+      cursor: pointer;
+      outline: none;
+      position: relative;
+      padding: 10px;
+      border-radius: 1000px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      ">
+        <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" class="text-light"
+          height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z">
+          </path>
+        </svg>Find your tutor
+        <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 448 512" height="1em" width="1em"
+          xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M190.5 66.9l22.2-22.2c9.4-9.4 24.6-9.4 33.9 0L441 239c9.4 9.4 9.4 24.6 0 33.9L246.6 467.3c-9.4 9.4-24.6 9.4-33.9 0l-22.2-22.2c-9.5-9.5-9.3-25 .4-34.3L311.4 296H24c-13.3 0-24-10.7-24-24v-32c0-13.3 10.7-24 24-24h287.4L190.9 101.2c-9.8-9.3-10-24.8-.4-34.3z">
+          </path>
+        </svg>
+      </button>
+      </a>
+    </div>
+    <div style="width: 50%;text-align: center;">
+      <img style="height: 350px;width: 450px; margin: 0 auto;" src="static/assets/Teacher-rafiki.81362516.svg" alt="">
+    </div>
+
+  </div>
+  <div style="width: 70%; margin: 0 auto; ">
+    <h2>Division Tutor</h2>
+    <div style="display: flex;justify-content: flex-start;align-items: center; gap: 20px; width: 50% ;">
+      <p
+        style="color: #6c2a8c;font-weight: 600px; background-color: white;width: 160px;height: 35px;display: flex;justify-content: center; align-items: center;color: #6c2a8c;font-size: 20px;border-radius: 30px;">
+        Cumilla: 40</p>
+      <p
+        style="color: #6c2a8c;font-weight: 600px; background-color: white;width: 160px;height: 35px;display: flex;justify-content: center; align-items: center;color: #6c2a8c;font-size: 20px;border-radius: 30px;">
+        Dhaka: 20</p>
+      <p
+        style="color: #6c2a8c;font-weight: 600px; background-color: white;width: 160px;height: 35px;display: flex;justify-content: center; align-items: center;color: #6c2a8c;font-size: 20px;border-radius: 30px;">
+        Barishal: 20</p>
+    </div>
+  </div>
+  <!-- header section end here -->
+
+  <div id="find" class="container mt-5">
+    <h2 style="color: #6c2a8c;font-weight: 600;" class="text-center mb-4">Explore Our Tuitions</h2>
+  
+    <form method="get" class="mb-3 tuition-filter-form">
+      {{ filter_form.as_p }}
+      <button style="background-color: #4fd1c5; color: white;" type="submit" class="btn">Apply Filter</button>
+    </form>
+  
+    <div class="row">
+      {% for tuition in tuitions %}
+        <div class="col-md-4 mb-4">
+          <div class="card">
+            <div class="card-body">
+              <h5 style="font-weight: bold;" class="card-title">{{ tuition.title }}</h5>
+              <p class="card-text">{{ tuition.description|truncatewords:15 }}</p>
+              <strong >Subjects:</strong> {{ tuition.subjects }} <br>
+              <strong>Monthly Salary:</strong> {{ tuition.monthly_salary }} <br><br>
+              <a style="background-color: #4fd1c5; color: white;" class="btn" href="{% url 'tuitions:tuition-detail' pk=tuition.id %}" >Details</a>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+
+
+  <!-- search tutor section start here -->
+  <div style="padding: 50px 0px;" class="search-tution">
+    <div style="width: 70%; margin: 0 auto; ">
+      <div style="text-align: center;">
+        <h1 style="font-family: Nunito,sans-serif;
+                font-style: normal;
+                font-weight: 600;
+                color: #05264e;">SEARCH TUTORING JOBS</h1>
+        <p style="
+                color: #66789c;
+                font-weight: 500;
+                font-size: 24px;
+                line-height: 26px;
+                ">Find Your Tution Jobs, in your area</p>
+      </div>
+
+      <div style="display: flex;justify-content: space-between;align-items: center;width: 100%;gap: 50px;">
+        <div style="width: 50%;">
+          <img src="https://tutorsheba.com/_next/static/media/Online%20learning-pana.2d5c3bbb.svg" alt="">
+        </div>
+        <div style="width: 50%;">
+          <h1>Looking for interesting tuition jobs to excel your teaching experience?</h1>
+          <p>If teaching jobs interests you, then you are on the right place. tutorsheba.com, we often have 500+ open
+            home tuition jobs that are genuine and 100% verified. Whether you are starting your career as a tuition
+            teacher or an expert in your field, we can help you find your next big tuition job. You can search and
+            apply
+            to the tuition jobs that best fit your skills, favorable location, class and subjects.</p>
+          <div style="text-align: center;">
+            <a style="text-decoration: none;" href="#find">
+              <button style="    background: linear-gradient(-30deg,#6c2a8c 50%,#a71678 0);
+                        padding: 15px 30px;
+                        margin: 12px;
+                        display: inline-block;
+                        transform: translate(0);
+                        overflow: hidden;
+                        color: #f7d4d4;
+                        font-size: 16px;
+                        letter-spacing: 2.5px;
+                        text-align: center;
+                        text-transform: uppercase;
+                        text-decoration: none;
+                        box-shadow: 0 20px 50px rgba(0,0,0,.5);
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        gap: 10px;
+          "><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" class="text-light"
+                height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z">
+                </path>
+              </svg>Search Tutor <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 448 512"
+                height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M190.5 66.9l22.2-22.2c9.4-9.4 24.6-9.4 33.9 0L441 239c9.4 9.4 9.4 24.6 0 33.9L246.6 467.3c-9.4 9.4-24.6 9.4-33.9 0l-22.2-22.2c-9.5-9.5-9.3-25 .4-34.3L311.4 296H24c-13.3 0-24-10.7-24-24v-32c0-13.3 10.7-24 24-24h287.4L190.9 101.2c-9.8-9.3-10-24.8-.4-34.3z">
+                </path>
+              </svg></button>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- search tutor section end here -->
+
+  <!-- our best teacher section start here -->
+  <div class="best" style="padding: 50px 0px;">
+    <div style="width: 70%; margin: 0 auto; ">
+      <div style="text-align: center;">
+        <h1 style="font-family: Nunito,sans-serif;
+                font-style: normal;
+                font-weight: 600;
+                color: #05264e;">Our best teacher</h1>
+        <p style="
+                color: #66789c;
+                font-weight: 500;
+                font-size: 24px;
+                line-height: 26px;
+                ">Find Our Specialist teacher to teach your son</p>
+      </div>
+
+      <div style="display: flex;justify-content: space-between;align-items: center;gap: 30px; padding: 40px 0px; width: 100%;">
+
+        <div style="background-color: #e0e6f7;padding: 5px;border-radius: 5px;">
+          <img style="height: 250px;width: 100%;border-radius: 5px;" src="static/assets/1.jpg" alt="">
+          <div style="text-align: center; padding: 10px 0px;">
+            <h1>Soaib Ahmed</h1>
+            <p>CCN University</p>
+            <p style="font-weight: bold;">CSE</p>
+            <div style="display: flex;justify-content: center;align-items: center;gap: 5px;">
+              <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" class="text-light"
+                height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z">
+                </path>
+              </svg>
+              <p>Cumilla</p>
+            </div>
+          </div>
+        </div>
+        <div style="background-color: #e0e6f7;padding: 5px;border-radius: 5px;">
+          <img style="height: 250px;width: 100%;border-radius: 5px;" src="static/assets/2.jpg" alt="">
+          <div style="text-align: center; padding: 10px 0px;">
+            <h1>Bayajid Alam Joyel</h1>
+            <p>CCN University</p>
+            <p style="font-weight: bold;">CSE</p>
+            <div style="display: flex;justify-content: center;align-items: center;gap: 5px;">
+              <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" class="text-light"
+                height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z">
+                </path>
+              </svg>
+              <p>Cumilla</p>
+            </div>
+          </div>
+        </div>
+        <div style="background-color: #e0e6f7;padding: 5px;border-radius: 5px;">
+          <img style="height: 250px;width: 100%;border-radius: 5px;" src="static/assets/4.jpg" alt="">
+          <div style="text-align: center; padding: 10px 0px;">
+            <h1>Abir Ahmed Chowdory</h1>
+            <p>CCN University</p>
+            <p style="font-weight: bold;">CSE</p>
+            <div style="display: flex;justify-content: center;align-items: center;gap: 5px;">
+              <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" class="text-light"
+                height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z">
+                </path>
+              </svg>
+              <p>Cumilla</p>
+            </div>
+          </div>
+        </div>
+        <div style="background-color: #e0e6f7;border-radius: 5px;padding: 5px;">
+          <img style="height: 250px;width: 100%;border-radius: 5px;" src="static/assets/3.jpg" alt="">
+          <div style="text-align: center; padding: 10px 0px;">
+            <h1>Mridul Chandra Das</h1>
+            <p>CCN University</p>
+            <p style="font-weight: bold;">CSE</p>
+            <div style="display: flex;justify-content: center;align-items: center;gap: 5px;">
+              <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" class="text-light"
+                height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z">
+                </path>
+              </svg>
+              <p>Cumilla</p>
+            </div>
+          </div>
+        </div>
+        
+
+
+      </div>
+    </div>
+  </div>
+  <!--  our best teacher section end here -->
+
+  <!-- find subject specialist section start here -->
+  <div style="padding: 70px 0px;">
+    <div style="width: 70%; margin: 0 auto; ">
+      <div style="text-align: center;">
+        <h1 style="font-family: Nunito,sans-serif;
+                font-style: normal;
+                font-weight: 600;
+                color: #05264e;">Find Your Subject Specialist</h1>
+        <p style="
+                color: #66789c;
+                font-weight: 500;
+                font-size: 24px;
+                line-height: 26px;
+                ">Find Our Specialist to reach your dream goal</p>
+      </div>
+
+      <div style="display: flex; justify-content: center; align-items: center;gap: 30px;">
+        <p style="
+        font-family: Nunito,sans-serif;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 24px;
+        line-height: 30px;
+        color: #05264e;
+        background: #f2f6fd;
+        padding: 10px 80px;
+        border: 1px solid #e0e6f7;
+        border-radius: 10px;
+        ">ICT</p>
+        <p style="
+        font-family: Nunito,sans-serif;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 24px;
+        line-height: 30px;
+        color: #05264e;
+        background: #f2f6fd;
+        padding: 10px 80px;
+        border: 1px solid #e0e6f7;
+        border-radius: 10px;
+        ">ENGLISH</p>
+        <p style="
+        font-family: Nunito,sans-serif;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 24px;
+        line-height: 30px;
+        color: #05264e;
+        background: #f2f6fd;
+        padding: 10px 80px;
+        border: 1px solid #e0e6f7;
+        border-radius: 10px;
+        ">CHEMISTRY</p>
+        <p style="
+        font-family: Nunito,sans-serif;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 24px;
+        line-height: 30px;
+        color: #05264e;
+        background: #f2f6fd;
+        padding: 10px 80px;
+        border: 1px solid #e0e6f7;
+        border-radius: 10px;
+        ">BIOLOGY</p>
+      </div>
+    </div>
+  </div>
+  <!-- find subject specialist section end here -->
+
+
+<!-- footer start from here -->
+
+  <!-- Site footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12 col-md-6">
+          <h1 style="color: #4fd1c5;">Best Tutoring Platform</h1>
+          <p class="text-justify">Tutoring Platform is a platform where parents, students and tutors can easily connect with each other. We provide qualified Home/Online tutors to help your child with studies and helping them perform better in exams. We are a group of 2,50,000+ Tutors and 30,000+ satisfied parents/students in Dhaka, Chattagram, Rajshahi, Sylhet, Khulna, Barishal, Rangpur, Mymensingh cities for different academic and professional subjects.</p>
+        </div>
+
+        <div class="col-xs-6 col-md-3">
+          <h6 style="color: #4fd1c5;">Categories</h6>
+          <ul class="footer-links">
+            <li><a href="http://scanfcode.com/category/c-language/">C</a></li>
+            <li><a href="http://scanfcode.com/category/front-end-development/">UI Design</a></li>
+            <li><a href="http://scanfcode.com/category/back-end-development/">PHP</a></li>
+            <li><a href="http://scanfcode.com/category/java-programming-language/">Java</a></li>
+            <li><a href="http://scanfcode.com/category/android/">Android</a></li>
+            <li><a href="http://scanfcode.com/category/templates/">Templates</a></li>
+          </ul>
+        </div>
+
+        <div class="col-xs-6 col-md-3">
+          <h6 style="color: #4fd1c5;">Quick Links</h6>
+          <ul class="footer-links">
+            <li><a href="http://scanfcode.com/about/">About Us</a></li>
+            <li><a href="http://scanfcode.com/contact/">Contact Us</a></li>
+            <li><a href="http://scanfcode.com/contribute-at-scanfcode/">Contribute</a></li>
+            <li><a href="http://scanfcode.com/privacy-policy/">Privacy Policy</a></li>
+            <li><a href="http://scanfcode.com/sitemap/">Sitemap</a></li>
+          </ul>
+        </div>
+      </div>
+      <hr>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="">
+          <div style="text-align: center;"> 
+            <p class="copyright-text">Copyright &copy; 2024 All Rights Reserved by 
+            <a href="#">Seaum</a>.
+               </p>
+              </div>
+        </div>
+
+        <div class="col-md-4 col-sm-6 col-xs-12">
+          
+        </div>
+      </div>
+    </div>
+</footer>
+
+{% endblock %}
