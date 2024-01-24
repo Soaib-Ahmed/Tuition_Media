@@ -5,10 +5,10 @@
 
 Live Link: 
 
-Overview
+#Overview
 Tutor Ninja is an innovative online tuition management platform designed to streamline the process of searching, applying, and managing tuitions. This platform caters to both administrators and users, providing a comprehensive solution to meet the needs of the education community.
 
-Key Features
+#Key Features
 1. User-friendly Interface
 Tutor Ninja boasts an intuitive and user-friendly interface, ensuring a seamless experience for both administrators and users. The platform's design prioritizes accessibility and ease of use.
 
@@ -27,8 +27,10 @@ Search and Apply: Users can filter for tuitions based on various criteria such a
 
 Application Management: Users can track and manage their tuition applications through the platform, ensuring a transparent and organized application process.
 
-How to Use Tutor Ninja
+#How to Use Tutor Ninja
+
 ->For Admins-
+
 Add Tuitions: Navigate to the admin dashboard to add new tuition listings with relevant details.
 Delete Tuitions: Remove outdated or irrelevant tuitions to keep the platform up-to-date.
 
