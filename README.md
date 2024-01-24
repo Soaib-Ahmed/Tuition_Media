@@ -53,4 +53,3 @@ Contributions to Tutor Ninja are welcome! Feel free to submit bug reports, featu
 License
 Tutor Ninja is licensed under the Soaib Ahmed. 
 
-Getting Started:
