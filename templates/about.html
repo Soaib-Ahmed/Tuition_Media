@@ -1,0 +1,774 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <style>
+    body {
+      font: 400 15px Lato, sans-serif;
+      line-height: 1.8;
+      color: #818181;
+    }
+    .signup{
+      justify-content: end;
+      margin-top: 7px;
+      font-size: 16px;
+    }
+    .signups{
+      border: 1px solid green;
+    }
+    .logins{
+      border: 1px solid yellow;
+    }
+
+    h2 {
+      font-size: 24px;
+      text-transform: uppercase;
+      color: #303030;
+      font-weight: 600;
+      margin-bottom: 30px;
+    }
+
+    h4 {
+      font-size: 19px;
+      line-height: 1.375em;
+      color: #303030;
+      font-weight: 400;
+      margin-bottom: 30px;
+    }
+
+    .jumbotron {
+      background-color: #ad32a2;
+      color: #fff;
+      padding: 100px 25px;
+      font-family: Montserrat, sans-serif;
+    }
+
+    .container-fluid {
+      padding: 60px 50px;
+    }
+
+    .bg-grey {
+      background-color: #f6f6f6;
+    }
+
+    .logo-small {
+      color: #ad32a2;
+      font-size: 50px;
+    }
+
+    .logo {
+      color: #ad32a2;
+      font-size: 200px;
+    }
+
+    .thumbnail {
+      padding: 0 0 15px 0;
+      border: none;
+      border-radius: 0;
+    }
+
+    .thumbnail img {
+      width: 100%;
+      height: 100%;
+      margin-bottom: 10px;
+    }
+
+    .carousel-control.right,
+    .carousel-control.left {
+      background-image: none;
+      color: #ad32a2;
+    }
+
+    .carousel-indicators li {
+      border-color: #ad32a2;
+    }
+
+    .carousel-indicators li.active {
+      background-color: #ad32a2;
+    }
+
+    .item h4 {
+      font-size: 19px;
+      line-height: 1.375em;
+      font-weight: 400;
+      font-style: italic;
+      margin: 70px 0;
+    }
+
+    .item span {
+      font-style: normal;
+    }
+
+    .panel {
+      border: 1px solid #ad32a2;
+      border-radius: 0 !important;
+      transition: box-shadow 0.5s;
+    }
+
+    .panel:hover {
+      box-shadow: 5px 0px 40px rgba(0, 0, 0, .2);
+    }
+
+    .panel-footer .btn:hover {
+      border: 1px solid #ad32a2;
+      background-color: #fff !important;
+      color: #ad32a2;
+    }
+
+    .panel-heading {
+      color: #fff !important;
+      background-color: #ad32a2 !important;
+      padding: 25px;
+      border-bottom: 1px solid transparent;
+      border-top-left-radius: 0px;
+      border-top-right-radius: 0px;
+      border-bottom-left-radius: 0px;
+      border-bottom-right-radius: 0px;
+    }
+
+    .panel-footer {
+      background-color: white !important;
+    }
+
+    .panel-footer h3 {
+      font-size: 32px;
+    }
+
+    .panel-footer h4 {
+      color: #aaa;
+      font-size: 14px;
+    }
+
+    .panel-footer .btn {
+      margin: 15px 0;
+      background-color: #ad32a2;
+      color: #fff;
+    }
+
+    .navbar {
+      margin-bottom: 0;
+      background-color: #ad32a2;
+      z-index: 9999;
+      border: 0;
+      font-size: 16px !important;
+      line-height: 1.42857143 !important;
+      /* letter-spacing: 4px; */
+      border-radius: 0;
+      font-family: Montserrat, sans-serif;
+      height: 60px;
+    }
+
+    .navbar li a,
+    .navbar .navbar-brand {
+      color: #fff !important;
+    }
+
+    .navbar-nav li a:hover,
+    .navbar-nav li.active a {
+      text-decoration: none;
+    }
+
+    .navbar-default .navbar-toggle {
+      border-color: transparent;
+      color: #fff !important;
+    }
+
+    footer .glyphicon {
+      font-size: 20px;
+      margin-bottom: 20px;
+      color: #ad32a2;
+    }
+
+    .slideanim {
+      visibility: hidden;
+    }
+
+    .slide {
+      animation-name: slide;
+      -webkit-animation-name: slide;
+      animation-duration: 1s;
+      -webkit-animation-duration: 1s;
+      visibility: visible;
+    }
+
+    @keyframes slide {
+      0% {
+        opacity: 0;
+        transform: translateY(70%);
+      }
+
+      100% {
+        opacity: 1;
+        transform: translateY(0%);
+      }
+    }
+
+    @-webkit-keyframes slide {
+      0% {
+        opacity: 0;
+        -webkit-transform: translateY(70%);
+      }
+
+      100% {
+        opacity: 1;
+        -webkit-transform: translateY(0%);
+      }
+    }
+
+    @media screen and (max-width: 768px) {
+      .col-sm-4 {
+        text-align: center;
+        margin: 25px 0;
+      }
+
+      .btn-lg {
+        width: 100%;
+        margin-bottom: 35px;
+      }
+    }
+
+    @media screen and (max-width: 480px) {
+      .logo {
+        font-size: 150px;
+      }
+    }
+      /* Fotter css */
+  .site-footer
+{
+  background:linear-gradient(90deg,#ad32a2,#58034a);
+  padding:45px 0 20px;
+  font-size:15px;
+  line-height:24px;
+  color:white
+}
+.site-footer hr
+{
+  border-top-color:#4fd1c5;
+  opacity:0.5
+}
+.site-footer hr.small
+{
+  margin:20px 0
+}
+.site-footer h6
+{
+  color:#fff;
+  font-size:16px;
+  text-transform:uppercase;
+  margin-top:5px;
+  letter-spacing:2px
+}
+.site-footer a
+{
+  color:white;
+}
+.site-footer a:hover
+{
+  color:#3366cc;
+  text-decoration:none;
+}
+.footer-links
+{
+  padding-left:0;
+  list-style:none
+}
+.footer-links li
+{
+  display:block
+}
+.footer-links a
+{
+  color:white
+}
+.footer-links a:active,.footer-links a:focus,.footer-links a:hover
+{
+  color:#3366cc;
+  text-decoration:none;
+}
+.footer-links.inline li
+{
+  display:inline-block
+}
+.site-footer .social-icons
+{
+  text-align:right
+}
+.site-footer .social-icons a
+{
+  width:40px;
+  height:40px;
+  line-height:40px;
+  margin-left:6px;
+  margin-right:0;
+  border-radius:100%;
+  background-color:#33353d
+}
+.copyright-text
+{
+  margin:0
+}
+@media (max-width:991px)
+{
+  .site-footer [class^=col-]
+  {
+    margin-bottom:30px
+  }
+}
+@media (max-width:767px)
+{
+  .site-footer
+  {
+    padding-bottom:0
+  }
+  .site-footer .copyright-text,.site-footer .social-icons
+  {
+    text-align:center
+  }
+}
+.social-icons
+{
+  padding-left:0;
+  margin-bottom:0;
+  list-style:none
+}
+.social-icons li
+{
+  display:inline-block;
+  margin-bottom:4px
+}
+.social-icons li.title
+{
+  margin-right:15px;
+  text-transform:uppercase;
+  color:#96a2b2;
+  font-weight:700;
+  font-size:13px
+}
+.social-icons a{
+  background-color:#eceeef;
+  color:#818a91;
+  font-size:16px;
+  display:inline-block;
+  line-height:44px;
+  width:44px;
+  height:44px;
+  text-align:center;
+  margin-right:8px;
+  border-radius:100%;
+  -webkit-transition:all .2s linear;
+  -o-transition:all .2s linear;
+  transition:all .2s linear
+}
+.social-icons a:active,.social-icons a:focus,.social-icons a:hover
+{
+  color:#fff;
+  background-color:#29aafe
+}
+.social-icons.size-sm a
+{
+  line-height:34px;
+  height:34px;
+  width:34px;
+  font-size:14px
+}
+.social-icons a.facebook:hover
+{
+  background-color:#3b5998
+}
+.social-icons a.twitter:hover
+{
+  background-color:#00aced
+}
+.social-icons a.linkedin:hover
+{
+  background-color:#007bb6
+}
+.social-icons a.dribbble:hover
+{
+  background-color:#ea4c89
+}
+@media (max-width:767px)
+{
+  .social-icons li.title
+  {
+    display:block;
+    margin-right:0;
+    font-weight:600
+  }
+}
+  </style>
+</head>
+
+<body id="myPage" data-spy="scroll" data-target="" data-offset="60">
+
+  <!-- <nav class="navbar navbar-expand-lg" style="background: linear-gradient(90deg,#ad32a2,#58034a);">
+    <div style="width: 80%; margin: 0 auto;" class="container-fluid">
+      <a style="color: white;" class="navbar-brand" href="{% url 'homepage' %}">TuitionNinja</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div  class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul style="gap: 20px;" class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a style="color: white;" class="nav-link active" aria-current="page" href="{% url 'homepage' %}">Home</a>
+          </li>
+          <li class="nav-item">
+            <a style="color: white;" class="nav-link active" aria-current="page" href="{% url 'tuitions' %}">Tuitions</a>
+          </li>
+          <li class="nav-item">
+            <a style="color: white;" class="nav-link active" aria-current="page" href="{% url 'about' %}">About Us</a>
+          </li>
+        </ul>
+
+        <div class="d-flex">
+          {% if user.is_authenticated %}
+            <div class="navbar-nav ml-auto">
+              <a href="{% url 'profile' %}" class="btn btn-outline-warning text-white mx-3" type="submit">Profile</a>
+              <a href="{% url 'logout' %}" class="btn btn-outline-warning text-white" type="submit">Logout</a>
+          {% else %}
+            <a href="{% url 'signup' %}" class="btn btn-outline-success mx-3 text-white">Sign Up</a>
+            <a href="{% url 'login' %}" class="btn btn-outline-warning text-white" type="submit">Login</a>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </nav> -->
+
+  <div class="jumbotron text-center">
+    <h1>Welcome to</h1>
+    <p>Tution Ninja</p>
+  </div>
+
+  <!-- Container (About Section) -->
+  <div style="width: 70%; margin: 0 auto;" id="about" class="container-fluid">
+    <div class="row">
+      <div class="col-sm-8">
+        <h2>About Tution Ninja</h2><br>
+        <h4>Tuition Ninja, a leading name in the realm of modern education, stands as an innovative online tutoring platform dedicated to reshaping the learning landscape. Our platform is equipped with a team of diverse and qualified tutors, offering expertise across a broad spectrum of subjects, spanning from fundamental academic disciplines to specialized courses such as languages and coding.
+
+          What sets Tuition Ninja apart is its commitment to delivering a personalized and dynamic educational experience. By employing a sophisticated smart matching algorithm, Tuition Ninja ensures that students are connected with expert tutors who align with their individual learning preferences, chosen subjects, and specific academic requirements.</h4><br>
+        <p>
+          Our virtual classrooms serve as interactive and immersive spaces, facilitating real-time discussions, collaborative efforts on digital whiteboards, and seamless resource sharing. At Tuition Ninja, flexibility is paramount, allowing students to schedule tutoring sessions at their convenience and seamlessly integrate learning into their busy lives.
+
+Key features of Tuition Ninja include recorded tutoring sessions, enabling students to review and reinforce their learning at their own pace. The platform incorporates integrated assessment and progress tracking tools, complemented by constructive feedback from tutors, fostering a culture of continuous improvement.
+
+Tuition Ninja places a high priority on safety, ensuring secure and supportive learning environments through encrypted communication channels and rigorous background checks for all tutors. With a focus on innovation and adaptability, Tuition Ninja empowers students to thrive in their academic journey by offering a comprehensive and tailored educational experience..</p>
+        <br><button class="btn btn-default btn-lg">Get in Touch</button>
+      </div>
+      <div class="col-sm-4">
+        <span class="glyphicon glyphicon-signal logo"></span>
+      </div>
+    </div>
+  </div>
+
+  <div style="width: 70%; margin: 0 auto;" class="container-fluid bg-grey">
+    <div class="row">
+      <div class="col-sm-4">
+        <span class="glyphicon glyphicon-globe logo slideanim"></span>
+      </div>
+      <div class="col-sm-8">
+        <h2>Our Values</h2><br>
+        <h4><strong>MISSION:</strong> Tutor Ninja is dedicated to empowering learners globally through a revolutionary online tutoring platform that transcends traditional educational barriers. Our mission is to foster a dynamic and personalized learning environment, allowing students to connect with expert tutors, leverage cutting-edge technology, and achieve academic excellence on their terms.</h4><br>
+        <p><strong>VISION:</strong> Tutor Ninja envisions a world where learners across the globe are empowered by a revolutionary online tutoring platform that breaks down traditional educational barriers. Our commitment lies in creating a dynamic and personalized learning environment, enabling students to connect with expert tutors, utilize cutting-edge technology, and attain academic excellence on their terms.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Container (Services Section) -->
+  <div style="width: 70%; margin: 0 auto;" id="services" class="container-fluid text-center">
+    <h2>Unlock Your Learning Journey</h2>
+    <h4>What We Offer</h4>
+    <br>
+    <div class="row slideanim">
+      <div class="col-sm-6">
+        <span class="glyphicon glyphicon-off logo-small"></span>
+        <h4>OPPORTUNITY</h4>
+        <p>Explore a world of opportunities to enhance your learning experience.</p>
+      </div>
+      <div class="col-sm-6">
+        <span class="glyphicon glyphicon-certificate logo-small"></span>
+        <h4>CERTIFIED TEACHER</h4>
+        <p>Learn from certified teachers dedicated to your academic success.</p>
+      </div>
+    </div>
+    <br><br>
+    <div class="row slideanim">
+      <div class="col-sm-6">
+        <span class="glyphicon glyphicon-leaf logo-small"></span>
+        <h4>BEST TEACHER</h4>
+        <p>Benefit from expert educators committed to providing the best learning experience.</p>
+      </div>
+  
+      <div class="col-sm-6">
+        <span class="glyphicon glyphicon-lock logo-small"></span>
+        <h4>NEXT TEACHING JOB</h4>
+        <p>Explore opportunities for your next teaching job and advance your career.</p>
+      </div>
+    </div>
+  </div>
+  
+
+  <!-- Container (Portfolio Section) -->
+  <div style="width: 70%; margin: 0 auto;" id="portfolio" class="container-fluid text-center bg-grey">
+    <h2>Director Panel</h2><br>
+    <h4>Meet the Ninja Team</h4>
+    <div class="row text-center slideanim">
+      <div class="col-sm-4">
+        <div class="thumbnail">
+          <img style="height: 300px;" src="/static/assets/1.jpg" alt="Director" width="400" height="300">
+          <p><strong>Managing Director</strong></p>
+          <p>Guiding the Ninja team with passion and vision.</p>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="thumbnail">
+          <img style="height: 300px;" src="/static/assets/4.jpg" alt="Head of Marketing" width="400" height="300">
+          <p><strong>Head Of Marketing</strong></p>
+          <p>Driving Ninja's presence with strategic marketing expertise.</p>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="thumbnail">
+          <img style="height: 300px;" src="/static/assets/2.jpg" alt="Portal Manager" width="400" height="300">
+          <p><strong>Portal Manager</strong></p>
+          <p>Ensuring smooth operations and user satisfaction on the Ninja platform.</p>
+        </div>
+      </div>
+    </div><br>
+  
+    <h2>What Our Customers Say</h2>
+    <div id="myCarousel" class="carousel slide text-center" data-ride="carousel">
+      <!-- Indicators -->
+      <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+      </ol>
+  
+      <!-- Wrapper for slides -->
+      <div class="carousel-inner" role="listbox">
+        <div class="item active">
+          <h4>"This company is the best. I am so happy with the result!"<br><span>Michael Roe, Vice President, Comment
+              Box</span></h4>
+        </div>
+        <div class="item">
+          <h4>"One word... WOW!!"<br><span>John Doe, Salesman, Rep Inc</span></h4>
+        </div>
+        <div class="item">
+          <h4>"Could I... BE any more happy with this company?"<br><span>Chandler Bing, Actor, FriendsAlot</span></h4>
+        </div>
+      </div>
+  
+      <!-- Left and right controls -->
+      <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+  </div>
+  
+
+  <!-- Container (Pricing Section) -->
+  <div style="width: 70%; margin: 0 auto;" id="pricing" class="container-fluid">
+    <div class="text-center">
+      <h2>Membership Plans</h2>
+      <h4>Choose a payment plan that works for you</h4>
+    </div>
+    <div class="row slideanim">
+      <div class="col-sm-4 col-xs-12">
+        <div class="panel panel-default text-center">
+          <div class="panel-heading">
+            <h1>Basic</h1>
+          </div>
+          <div class="panel-body">
+            <p><strong>20</strong> Tutor Sessions</p>
+            <p><strong>15</strong> Subjects Covered</p>
+            <p><strong>5</strong> Hours of Content</p>
+            <p><strong>2</strong> Interactive Sessions</p>
+            <p><strong>Endless</strong> Learning Opportunities</p>
+          </div>
+          <div class="panel-footer">
+            <h3>$19</h3>
+            <h4>per month</h4>
+            <button class="btn btn-lg">Sign Up</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4 col-xs-12">
+        <div class="panel panel-default text-center">
+          <div class="panel-heading">
+            <h1>Pro</h1>
+          </div>
+          <div class="panel-body">
+            <p><strong>50</strong> Tutor Sessions</p>
+            <p><strong>25</strong> Subjects Covered</p>
+            <p><strong>10</strong> Hours of Content</p>
+            <p><strong>5</strong> Interactive Sessions</p>
+            <p><strong>Endless</strong> Learning Opportunities</p>
+          </div>
+          <div class="panel-footer">
+            <h3>$29</h3>
+            <h4>per month</h4>
+            <button class="btn btn-lg">Sign Up</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4 col-xs-12">
+        <div class="panel panel-default text-center">
+          <div class="panel-heading">
+            <h1>Premium</h1>
+          </div>
+          <div class="panel-body">
+            <p><strong>100</strong> Tutor Sessions</p>
+            <p><strong>50</strong> Subjects Covered</p>
+            <p><strong>25</strong> Hours of Content</p>
+            <p><strong>10</strong> Interactive Sessions</p>
+            <p><strong>Endless</strong> Learning Opportunities</p>
+          </div>
+          <div class="panel-footer">
+            <h3>$49</h3>
+            <h4>per month</h4>
+            <button class="btn btn-lg">Sign Up</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+  <!-- Container (Contact Section) -->
+  <div style="width: 70%; margin: 0 auto; background-color: #e0e6f7;" id="contact" class="container-fluid">
+    <h2 class="text-center">CONTACT</h2>
+    <div class="row">
+      <div class="col-sm-5">
+        <p>Feel free to reach out, and we'll respond within 24 hours.</p>
+        <p><span class="glyphicon glyphicon-map-marker"></span> Cumilla, Bangladesh</p>
+        <p><span class="glyphicon glyphicon-phone"></span> +00 1515151515</p>
+        <p><span class="glyphicon glyphicon-envelope"></span> info@tuitionninja.com</p>
+      </div>
+      <div class="col-sm-7 slideanim">
+        <div class="row">
+          <div class="col-sm-6 form-group">
+            <input class="form-control" id="name" name="name" placeholder="Your Name" type="text" required>
+          </div>
+          <div class="col-sm-6 form-group">
+            <input class="form-control" id="email" name="email" placeholder="Your Email" type="email" required>
+          </div>
+        </div>
+        <textarea class="form-control" id="comments" name="comments" placeholder="Your Message" rows="5" required></textarea><br>
+        <div class="row">
+          <div class="col-sm-12 form-group">
+            <button class="btn btn-primary pull-right" type="submit">Send Message</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+  <!-- Image of location/map -->
+  <!-- <img src="/w3images/map.jpg" class="w3-image w3-greyscale-min" style="width:100%"> -->
+
+
+  <script>
+    $(document).ready(function () {
+      $(".navbar a, footer a[href='#myPage']").on('click', function (event) {
+        if (this.hash !== "") {
+          event.preventDefault();
+
+          var hash = this.hash;
+          $('html, body').animate({
+            scrollTop: $(hash).offset().top
+          }, 900, function () {
+
+            // Add hash (#) to URL when done scrolling (default click behavior)
+            window.location.hash = hash;
+          });
+        } // End if
+      });
+
+      $(window).scroll(function () {
+        $(".slideanim").each(function () {
+          var pos = $(this).offset().top;
+
+          var winTop = $(window).scrollTop();
+          if (pos < winTop + 600) {
+            $(this).addClass("slide");
+          }
+        });
+      });
+    })
+  </script>
+<!-- footer start from here -->
+
+  <!-- Site footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12 col-md-6">
+          <h1 style="color: #4fd1c5;">Best Tutoring Platform</h1>
+          <p class="text-justify">Tutoring Platform is a platform where parents, students and tutors can easily connect with each other. We provide qualified Home/Online tutors to help your child with studies and helping them perform better in exams. We are a group of 2,50,000+ Tutors and 30,000+ satisfied parents/students in Dhaka, Chattagram, Rajshahi, Sylhet, Khulna, Barishal, Rangpur, Mymensingh cities for different academic and professional subjects.</p>
+        </div>
+
+        <div class="col-xs-6 col-md-3">
+          <h6 style="color: #4fd1c5;">Categories</h6>
+          <ul class="footer-links">
+            <li><a href="http://scanfcode.com/category/c-language/">C</a></li>
+            <li><a href="http://scanfcode.com/category/front-end-development/">UI Design</a></li>
+            <li><a href="http://scanfcode.com/category/back-end-development/">PHP</a></li>
+            <li><a href="http://scanfcode.com/category/java-programming-language/">Java</a></li>
+            <li><a href="http://scanfcode.com/category/android/">Android</a></li>
+            <li><a href="http://scanfcode.com/category/templates/">Templates</a></li>
+          </ul>
+        </div>
+
+        <div class="col-xs-6 col-md-3">
+          <h6 style="color: #4fd1c5;">Quick Links</h6>
+          <ul class="footer-links">
+            <li><a href="http://scanfcode.com/about/">About Us</a></li>
+            <li><a href="http://scanfcode.com/contact/">Contact Us</a></li>
+            <li><a href="http://scanfcode.com/contribute-at-scanfcode/">Contribute</a></li>
+            <li><a href="http://scanfcode.com/privacy-policy/">Privacy Policy</a></li>
+            <li><a href="http://scanfcode.com/sitemap/">Sitemap</a></li>
+          </ul>
+        </div>
+      </div>
+      <hr>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="">
+          <div style="text-align: center;"> 
+            <p class="copyright-text">Copyright &copy; 2024 All Rights Reserved by 
+            <a href="#">Seaum</a>.
+               </p>
+              </div>
+        </div>
+
+        <div class="col-md-4 col-sm-6 col-xs-12">
+          
+        </div>
+      </div>
+    </div>
+</footer>
+
+</body>
+
+</html>
+{% endblock %}
