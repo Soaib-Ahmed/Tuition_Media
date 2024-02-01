@@ -18,3 +18,23 @@ class HomePageView(TemplateView):
 
 
         return context
+
+class AboutUsView(TemplateView):
+    template_name = 'about.html'
+
+class TuitionsView(TemplateView):
+    template_name = 'tuitions.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        tuitions = Tuition.objects.all()
+        filter_form = TuitionFilterForm(self.request.GET)
+
+        if filter_form.is_valid():
+            tuitions = filter_form.filter_tuitions(tuitions)
+
+        context['tuitions'] = tuitions
+        context['filter_form'] = filter_form
+
+        return context
